@@ -1,0 +1,324 @@
+﻿@font-face {
+  font-family: IranYekanRegular;
+  src: url("../fonts/iranyekan_regular.ttf");
+}
+
+@font-face {
+  font-family: "IranSans";
+  src: url("../fonts/iransans.ttf");
+}
+
+@font-face {
+  font-family: BTitr;
+  src: url("../fonts/BTitr.ttf");
+}
+
+
+@font-face {
+  font-family: BZar;
+  src: url("../fonts/BZar.ttf");
+}
+
+@font-face {
+  font-family: BYekan;
+  src: url("../fonts/BYekan.ttf");
+}
+
+.v-list-group {
+  font-family: IranYekanRegular;
+}
+
+.v-breadcrumbs {
+  font-family: "IranSans", serif;
+}
+
+.localization {
+  font-family: "IranSans";
+}
+
+
+// Button
+.v-btn__content {
+  font-family: IranYekanRegular
+}
+
+
+// data table
+.v-data-footer__select {
+  font-family: "IranSans";
+  font-weight: normal;
+  font-size: 1.3rem;
+}
+
+.v-data-table__empty-wrapper {
+  font-family: "IranSans";
+  font-weight: bold;
+}
+
+th {
+  font-family: IranYekanRegular;
+  font-size: 1.2rem !important;
+}
+
+tr {
+  font-family: "IranSans";
+}
+
+td {
+  font-size: 1.2rem !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: IranYekanRegular;
+  font-weight: bolder;
+}
+
+
+.v-card__title {
+  font-family: IranYekanRegular !important;
+  font-weight: bolder;
+}
+
+.headline {
+  font-family: "B Yekan" !important;
+}
+
+
+.v-text-field__slot .v-label {
+  font-family: IranYekanRegular;
+  text-align: right !important;
+}
+
+.v-text-field__slot {
+  font-family: "IranSans";
+}
+
+.v-list-item__title {
+  font-family: IranYekanRegular !important;
+}
+
+.v-select__slot {
+  font-family: "IranSans";
+}
+
+.v-select__slot .v-label {
+  font-family: IranYekanRegular;
+}
+
+.v-list-item__title {
+  font-family: "IranSans";
+}
+
+.sqaure-btn {
+  min-width: 36px !important;
+  max-width: 36px !important;
+  width: 36px !important;
+}
+
+.v-tab {
+  font-family: IranYekanRegular;
+}
+
+label {
+  font-family: IranYekanRegular;
+  text-align: right !important;
+
+}
+
+.v-tooltip__content {
+  font-family: "IranSans";
+}
+
+.iran-yekan-regular {
+  font-family: "IranYekanRegular" !important;
+}
+
+.iran-sans-mobile {
+  font-family: "IranSans";
+}
+
+small {
+  font-family: "IranSans";
+  font-size: 0.75rem;
+}
+
+.swal2-title {
+  direction: rtl;
+  font-family: "IranSans";
+}
+
+.swal2-confirm {
+  font-family: IranYekanRegular, serif !important;
+}
+
+.swal2-cancel {
+  font-family: IranYekanRegular, serif !important;
+}
+
+.swal2-label {
+  direction: rtl;
+}
+
+.v-expansion-panels {
+  font-family: "IranSans", serif;
+}
+
+
+.v-stepper__label {
+  font-family: IranYekanRegular, serif;
+}
+
+.v-stepper__step__step {
+  font-family: "IranSans", serif;
+}
+
+
+*::-webkit-scrollbar {
+  opacity: 0;
+  width: 12px; /* width of the entire scrollbar */
+  background-color: #F5F5F5;
+  //overflow-y: hidden;
+}
+
+*::-webkit-scrollbar {
+  opacity: 0;
+  width: 12px; /* width of the entire scrollbar */
+  background-color: #F5F5F5;
+  //overflow-y: hidden;
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+*::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 6px #555;
+  background-color: #555;
+}
+
+.cke_editable {
+  font-family: "IranSans", serif !important;
+}
+
+
+.v-list-item__subtitle {
+  font-family: "IranSans";
+}
+
+
+.swal2-html-container {
+  font-family: "IranSans";
+  direction: rtl;
+}
+
+.v-toolbar__title {
+  font-family: IranYekanRegular !important;
+}
+
+.v-data-footer__pagination {
+  font-family: "IranSans";
+  font-size: 1.2rem;
+}
+
+.v-messages__message {
+  font-family: "IranSans";
+}
+
+.card-section {
+  padding-top: 3px !important;
+  padding-bottom: 5px !important;
+  justify-content: center;
+}
+
+.card-section span {
+  font-size: 0.8rem;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+
+.v-input--switch {
+  margin-top: 0px !important;
+}
+
+
+.card__subtitle {
+  font-family: "IranSans";
+  font-weight: normal;
+  font-size: 1.2rem !important;
+  margin-right: 5px;
+}
+
+
+.hide {
+  display: none !important;
+}
+
+.display-on-hover:hover + .hide {
+  display: block !important;
+}
+
+.v-input--checkbox label {
+  font-family: "IranSans" !important;
+
+}
+
+.navbar-background {
+  background: #f85032; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e73827, #f85032); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e73827, #f85032); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.v-treeview-node__label {
+  font-family: "IranSans" !important;
+  font-size: 1.4rem !important;
+}
+
+.v-messages__message {
+  font-size: 1.1rem;
+  margin-top: 5px;
+  padding-bottom: 2px;
+}
+
+.v-chip__content {
+  font-family: "IranSans" !important;
+}
+
+
+.v-date-picker-header__value {
+  font-family: "IranSans";
+}
+
+.v-date-picker-title {
+  font-family: "IranSans";
+}
+
+.v-date-picker-years {
+  font-family: "IranSans";
+}
+
+.v-time-picker-clock__container {
+  font-family: "IranSans";
+}
+
+.v-date-picker-header__value .accent--text button {
+  direction: rtl !important;
+}
+
+.v-time-picker-title {
+  justify-content: center !important;
+  font-family: "IranSans";
+}
+
+.vpd-container {
+  font-family: IranSans;
+}
+
+.vpd-actions {
+  font-family: IranYekanRegular;
+}
