@@ -37,6 +37,16 @@ export const constantRoutes = [{
             },
         },
         {
+            path: '/likertTemplates',
+            name: 'likertTemplates',
+            component: () => import('@/view/components/Admin/LikertTemplates/LikertTemplatesManagement.vue'),
+            meta: {
+                title: 'route.likertTemplates',
+                icon: 'mdi-help',
+                permission: 'access_permissions.list,access_permissions.update,access_permissions.insert,access_permissions.delete'
+            },
+        },
+        {
             path: 'questions',
             name: 'questions',
             component: () => import('@/view/components/Admin/Users/Questions/QuestionsManagement.vue'),
@@ -53,16 +63,24 @@ export const constantRoutes = [{
         component: AdminLayout,
         meta: {
             noCache: true, affix: true,
-            title: 'route.Report',
-            permission: 'users.update,users.list,users.insert,users.delete,users.change_password,settings.update,personnel.update_personal_photo,personnel.update,personnel.list,personnel.insert,personnel.delete,personnel.change_tag_credit,normal_report.listmulti_media.list,multi_media.insert,multi_media.delete,messages.update,messages.list,messages.insert,messages.delete,live_report.list,instant_messages.list,instant_messages.insert,instant_messages.cancel_message,devices.list,devices.insert,devices.delete,access_permissions.update,access_permissions.insert,access_permissions.delete'
+            title: 'route.reports.title',
         },
         children: [
             {
-                path: 'Report',
-                name: 'Users',
+                path: '/ByUsers',
+                name: 'ReportByUsers',
                 component: () => import('@/view/components/Report/ReportByUser/ReportByUsers.vue'),
                 meta: {
                     title: 'گزارش بر اساس کاربران',
+                    icon: 'mdi-account-multiple',
+                },
+            },
+            {
+                path: '/ByQuestions',
+                name: 'ReportByQuestions',
+                component: () => import('@/view/components/Report/ReportByQuestion/ReportByQuestion.vue'),
+                meta: {
+                    title: 'گزارش بر اساس سؤالات',
                     icon: 'mdi-account-multiple',
                 },
             },

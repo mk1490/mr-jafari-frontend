@@ -3,6 +3,7 @@ import {
     user,
     accessPermissions,
     questions,
+    likertTemplates,
 } from './modules/index'
 
 export default {
@@ -106,5 +107,6 @@ export default {
     accessPermissions,
     user,
     questions,
+    likertTemplates,
 };
 

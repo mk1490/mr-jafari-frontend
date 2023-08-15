@@ -62,7 +62,7 @@ export default {
             table: {
                 headers: [
                     {text: '#', value: 'row', align: 'center', sortable: false},
-                    {text: 'کد ملّی', value: 'nationalCode', align: 'center', sortable: false},
+                    {text: 'کد ملّی', value: 'nationalCode', align: 'center', sortable: true},
                     {text: this.$t('ui.actions'), value: 'actions', align: 'center', sortable: false},
                 ],
                 contents: [],
