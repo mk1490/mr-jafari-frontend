@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import i18n from '@/locale'
+import store from '@/store'
 
 const baseData = {
     state: {
         questions: [],
+        userNationalCode: null,
         timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -22,20 +24,32 @@ const baseData = {
     }, getters: {
         timeRangeItems: (state) => state.timeRangeItems,
         questions: (state) => state.questions,
+        userNationalCode: (state) => state.userNationalCode,
     },
 
     mutations: {
         SET_QUESTION_ITEMS: (state, payload) => {
             state.questions = payload;
+        },
+        SET_NATIONAL_CODE: (state, payload) => {
+            state.userNationalCode = payload;
         }
     }, actions: {
         async prepareQuestionItems({state, commit}) {
-            if (state.questions.length > 0)
-                return
-            const [err, data] = await Vue.prototype.to(Vue.prototype.http.get(`/enduser/survey/initialize`));
-            if (!err) {
-                commit('SET_QUESTION_ITEMS', data.items);
-            }
+            const nationalCode = store.getters.userNationalCode;
+            if (!nationalCode)
+                return;
+            return new Promise(async (resolve, reject) => {
+                const [err, data] = await Vue.prototype.to(Vue.prototype.http.get(`/enduser/survey/initialize?nationalCode=${nationalCode}`));
+                if (!err) {
+                    commit('SET_QUESTION_ITEMS', data.items);
+                    resolve()
+                } else {
+                    reject(err);
+                }
+
+            })
+
         }
     },
 };
