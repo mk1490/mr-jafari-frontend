@@ -8,6 +8,9 @@
                 <v-data-table
                         :items="table.contents"
                         :headers="table.headers">
+                    <template v-slot:item.row="{ item , index}">
+                        <div> {{ table.contents.indexOf(item) + 1 }}</div>
+                    </template>
                     <template v-slot:item.actions="{ item , index}">
                         <div class="d-inline-flex">
                             <v-tooltip
