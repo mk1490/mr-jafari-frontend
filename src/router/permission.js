@@ -8,7 +8,7 @@ async function isAuth() {
     return vuex.getters.isLogin;
 }
 
-const DEFAULT_TITLE = 'سامانه مدیریت تردد یگان حفاظت و امنیت حرم مطهر رضوی';
+const DEFAULT_TITLE = 'سامانه نظرسنجی آنلاین';
 router.beforeEach(async (toRoute, from, next) => {
 
     document.title = DEFAULT_TITLE;
@@ -20,20 +20,5 @@ router.beforeEach(async (toRoute, from, next) => {
     } else {
         next();
     }
-
-
-    // console.log(hasRedirectForCallback);
-    // if (!isAuthenticated && hasRedirectForCallback) {
-    //     next({path: '/callback'});
-    // }
-    // if (toPath === '/callback') {
-    //     next();
-    //     return;
-    // }
-    // if (!isAuthenticated) {
-    // console.log("REDIRECT TO SIGN IN")
-    // sessionStorage.setItem('hasRedirect', 'true');
-    // await oAuth.signinRedirect(toPath);  
-    // }
     next();
 });
