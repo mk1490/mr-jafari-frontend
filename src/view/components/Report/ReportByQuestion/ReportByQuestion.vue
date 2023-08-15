@@ -11,6 +11,9 @@
                     <template v-slot:item.row="{ item , index}">
                         <div> {{ table.contents.indexOf(item) + 1 }}</div>
                     </template>
+                    <template v-slot:item.averageValue="{ item , index}">
+                        {{ item.averageValue + (!!item.likertLabelTitle ? ` (${item.likertLabelTitle})` : '')}}
+                    </template>
 
                     <template v-slot:item.actions="{ item , index}">
                         <div class="d-inline-flex">
@@ -51,7 +54,7 @@ export default {
                     {text: '#', value: 'row', align: 'center', sortable: false},
                     {text: 'سؤال', value: 'title', align: 'center', sortable: true},
                     {text: 'میانگین فراوانی', value: 'averageValue', align: 'center', sortable: true},
-                    {text: this.$t('ui.actions'), value: 'actions', align: 'center', sortable: false},
+                    // {text: this.$t('ui.actions'), value: 'actions', align: 'center', sortable: false},
                 ],
                 contents: [],
             }

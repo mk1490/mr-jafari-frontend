@@ -80,14 +80,7 @@ export default {
     name: "SurveyComplete",
     mixins: [mainMixin],
     async mounted() {
-        this.likertItems.push(this.getKeyValueObject(1, 'بسیار کم'))
-        this.likertItems.push(this.getKeyValueObject(2, 'کم'))
-        this.likertItems.push(this.getKeyValueObject(3, 'متوسط'))
-        this.likertItems.push(this.getKeyValueObject(4, 'زیاد'))
-        this.likertItems.push(this.getKeyValueObject(5, 'بسیار زیاد'))
-
         await this.checkHasNationalCode(false);
-
         await this.$store.dispatch('prepareQuestionItems')
         this.questions.map(f => {
             this.userSelectedLikerItem.push({

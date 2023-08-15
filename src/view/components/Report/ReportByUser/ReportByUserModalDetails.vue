@@ -32,7 +32,7 @@
                                     :key="item.id">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ item.title }}</td>
-                                <td class="text-center">{{ item.value }}</td>
+                                <td class="text-center">{{ item.value + (!!item.likertLabelTitle ? ` (${item.likertLabelTitle})` : '')}}</td>
                             </tr>
                             </tbody>
                         </template>
