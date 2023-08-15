@@ -5,7 +5,7 @@
             v-model="visible">
         <v-card>
             <v-card-title>
-                {{ $t('questions.modal.defineNewQuestion') }}
+                {{ !data ? $t('questions.modal.defineNewQuestion') : $t('questions.modal.editQuestion') }}
             </v-card-title>
             <v-card-text>
                 <v-container>
@@ -15,6 +15,17 @@
                                     v-model="model.title"
                                     :label="$t('questions.modal.form.title')"
                                     dense
+                                    hide-details
+                                    outlined/>
+                        </div>
+                        <div class="col-12">
+                            <v-select
+                                    v-model="model.likertTemplateId"
+                                    :label="$t('questions.modal.form.likertTemplate')"
+                                    :items="likertItems"
+                                    dense
+                                    item-text="title"
+                                    item-value="id"
                                     hide-details
                                     outlined/>
                         </div>
@@ -48,22 +59,42 @@ export default {
     },
     emits: ['onAddItem', 'onUpdateItem'],
     created() {
-        this.model.title = this.data.title;
+
+        this.likertItems = this.data.likertItems;
+        if (!this.data.id) {
+            this.model.likertTemplateId = this.likertItems[0].id
+        } else {
+            this.model.title = this.data.title;
+            this.model.likertTemplateId = this.data.likertTemplateId;
+        }
     },
     data() {
         return {
+            likertItems: [],
             model: {
                 title: null,
+                likertTemplateId: null,
             }
         }
     },
     methods: {
         async submitAndSendToServer() {
-            const [err, data] = await this.to(this.http.post(`/admin/question/`, {
-                title: this.model.title
-            }));
-            if (!err) {
-                this.$emit('onAddItem', data);
+            if (!this.data.id) {
+                const [err, data] = await this.to(this.http.post(`/admin/question/`, {
+                    title: this.model.title,
+                    likertTemplateId: this.model.likertTemplateId,
+                }));
+                if (!err) {
+                    this.$emit('onAddItem', data);
+                }
+            } else {
+                const [err, data] = await this.to(this.http.put(`/admin/question/${this.data.id}`, {
+                    title: this.model.title,
+                    likertTemplateId: this.model.likertTemplateId,
+                }));
+                if (!err) {
+                    this.$emit('onUpdateItem', data);
+                }
             }
         }
     }

@@ -10,7 +10,7 @@
                         class="col-auto">
                     <v-btn
                             small
-                            @click="defineOrEdit(null)"
+                            @click="defineOrEdit(null, -1)"
                             color="primary">
                         {{ $t('questions.defineNewQuestion') }}
                     </v-btn>
@@ -28,7 +28,7 @@
                     <template v-slot:item.actions="{ item , index}">
                         <div class="d-inline-flex">
                             <v-tooltip
-                                    v-if="checkPermission('access_permissions.update')"
+                                    v-if="checkPermission('questions.update')"
                                     color="primary"
                                     bottom>
                                 <template v-slot:activator="{ on, attrs }">
@@ -46,14 +46,14 @@
                                 {{ $t('ui.edit') }}
                             </v-tooltip>
                             <v-tooltip
-                                    v-if="checkPermission('access_permissions.delete')"
+                                    v-if="checkPermission('questions.delete')"
                                     color="red"
                                     bottom>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn
                                             v-bind="attrs"
                                             v-on="on"
-                                            @click="itemDelete(item)"
+                                            @click="deleteItem(item)"
                                             class="sqaure-btn white--text mx-2"
                                             color="red">
                                         <v-icon>
@@ -72,6 +72,7 @@
                 v-if="modal.visible"
                 :visible.sync="modal.visible"
                 @onAddItem="addItem"
+                @onUpdateItem="updateItem"
                 :data="modal.data"/>
     </v-container>
 </template>
@@ -93,6 +94,7 @@ export default {
             modal: {
                 visible: false,
                 data: null,
+                index: -1,
             },
             table: {
                 headers: [
@@ -105,16 +107,37 @@ export default {
         }
     },
     methods: {
-        defineOrEdit(item) {
-            this.modal.data = item;
-            this.modal.visible = true;
+        async defineOrEdit(item, index) {
+            this.modal.index = index;
+            const [err, data] = await this.to(this.http.get(`/admin/question/initialize`));
+            if (!err) {
+                this.modal.data = {
+                    ...item,
+                    likertItems: data.likertItems
+                };
+                this.modal.visible = true;
+            }
+
         },
-        editItem(item) {
-            this.defineOrEdit(item);
+        editItem(item, index) {
+            this.defineOrEdit(item, index);
         },
         addItem(data) {
             this.table.contents.push(data);
             this.modal.visible = false;
+        },
+        updateItem(data){
+            this.table.contents.splice(this.modal.index, 1, data);
+            this.modal.visible = false;
+        },
+        async deleteItem(item) {
+            const modal = await this.deleteModal.show();
+            if (!modal)
+                return;
+            const [err] = await this.to(this.http.delete(`/admin/question/${item.id}`));
+            if (!err) {
+                this.table.contents.splice(this.table.contents.indexOf(item), 1);
+            }
         }
     }
 }

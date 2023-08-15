@@ -8,7 +8,8 @@
         defineNewQuestion: 'تعریف سؤال جدید',
         editQuestion: 'ویرایش سؤال',
         form: {
-            title: 'عنوان سؤال'
+            title: 'عنوان سؤال',
+            likertTemplate: 'قالب لیکرت'
         }
     },
 }
