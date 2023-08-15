@@ -65,7 +65,7 @@ export default {
     },
     emits: ['onAddItem', 'onUpdateItem'],
     async created() {
-        const [err, data] = await this.to(this.http.get(`/access-permission/permission/list`));
+        const [err, data] = await this.to(this.http.get(`/admin/access-permission/permission/list`));
         if (!err) {
             this.accessPermissionItems = data;
             this.model.title = this.data.title;
@@ -84,7 +84,7 @@ export default {
     methods: {
         async submitAndSendToServer() {
             if (this.data) {
-                const [err, data] = await this.to(this.http.put(`/access-permission/${this.data.id}`, this.model));
+                const [err, data] = await this.to(this.http.put(`/admin/access-permission/${this.data.id}`, this.model));
                 if (!err) {
                     this.$emit('onUpdateItem', data);
                     this.updateItemSuccessToast();
@@ -92,7 +92,7 @@ export default {
                     this.updateItemFailedToast();
                 }
             } else {
-                const [err, data] = await this.to(this.http.post(`/access-permission`, this.model));
+                const [err, data] = await this.to(this.http.post(`/admin/access-permission`, this.model));
                 if (!err) {
                     this.$emit('onAddItem', data);
                     this.addItemSuccessToast();

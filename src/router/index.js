@@ -49,8 +49,29 @@ export const constantRoutes = [{
     ]
 },
     {
+        path: '/Admin/Report', name: 'AdminReport',
+        component: AdminLayout,
+        meta: {
+            noCache: true, affix: true,
+            title: 'route.Report',
+            permission: 'users.update,users.list,users.insert,users.delete,users.change_password,settings.update,personnel.update_personal_photo,personnel.update,personnel.list,personnel.insert,personnel.delete,personnel.change_tag_credit,normal_report.listmulti_media.list,multi_media.insert,multi_media.delete,messages.update,messages.list,messages.insert,messages.delete,live_report.list,instant_messages.list,instant_messages.insert,instant_messages.cancel_message,devices.list,devices.insert,devices.delete,access_permissions.update,access_permissions.insert,access_permissions.delete'
+        },
+        children: [
+            {
+                path: 'Report',
+                name: 'Users',
+                component: () => import('@/view/components/Report/ReportByUser/ReportByUsers.vue'),
+                meta: {
+                    title: 'گزارش بر اساس کاربران',
+                    icon: 'mdi-account-multiple',
+                },
+            },
+        ]
+    },
+    {
         path: '/', name: 'Root',
         component: EnduserLayout,
+        hidden: true,
         children: [
             {
                 path: '/Main',
