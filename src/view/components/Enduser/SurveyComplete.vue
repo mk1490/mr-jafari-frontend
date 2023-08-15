@@ -46,7 +46,7 @@
                                                     v-model="userSelectedLikerItem[index].value"
                                                     row>
                                                 <v-radio
-                                                        v-for="likertItem in likertItems"
+                                                        v-for="likertItem in item.likertItems"
                                                         :key="`${item.id}_${likertItem.value}`"
                                                         :value="likertItem.value"
                                                         :label="likertItem.title"
