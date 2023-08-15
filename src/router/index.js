@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Layout from '../view/layout/TheLayout.vue';
+import AdminLayout from '../view/layout/TheLayout.vue';
+import EnduserLayout from '../view/components/Enduser/Layout/TheLayout.vue';
 
 Vue.use(Router);
 
 export const constantRoutes = [{
-    path: '*', hidden: true, redirect: 'UsersManagement'
+    path: '*', hidden: true, redirect: 'Main'
 }, {
-    path: '/', name: 'Root',
-    component: Layout,
+    path: '/Admin', name: 'AdminRoot',
+    component: AdminLayout,
     meta: {
         noCache: true, affix: true,
         title: 'route.Management',
@@ -35,8 +36,36 @@ export const constantRoutes = [{
                 permission: 'access_permissions.list,access_permissions.update,access_permissions.insert,access_permissions.delete'
             },
         },
+        {
+            path: 'questions',
+            name: 'questions',
+            component: () => import('@/view/components/Admin/Users/Questions/QuestionsManagement.vue'),
+            meta: {
+                title: 'route.questions',
+                icon: 'mdi-help',
+                permission: 'access_permissions.list,access_permissions.update,access_permissions.insert,access_permissions.delete'
+            },
+        },
     ]
 },
+    {
+        path: '/', name: 'Root',
+        component: EnduserLayout,
+        children: [
+            {
+                path: '/Main',
+                name: 'Main',
+                component: () => import('@/view/components/Enduser/Main.vue'),
+                meta: {},
+            },
+            {
+                path: '/SurveyComplete',
+                name: 'SurveyComplete',
+                component: () => import('@/view/components/Enduser/SurveyComplete.vue'),
+                meta: {},
+            },
+        ]
+    },
     {
         path: '/Login', name: 'Login',
         component: () => import('@/view/components/Login.vue'),

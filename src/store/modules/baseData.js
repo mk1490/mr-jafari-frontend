@@ -3,8 +3,7 @@ import i18n from '@/locale'
 
 const baseData = {
     state: {
-        soundPlayState: false,
-        battalionItems: [],
+        questions: [],
         timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -21,22 +20,22 @@ const baseData = {
             text: i18n.t('discount.form.discountTypeItems.amountage'), value: 1
         },]
     }, getters: {
-        battalionItems: (state) => state.battalionItems,
         timeRangeItems: (state) => state.timeRangeItems,
-        discountTypeItems: (state) => state.discountTypeItems,
-        soundPlaying: (state) => state.soundPlayState,
+        questions: (state) => state.questions,
     },
 
     mutations: {
-        SET_BATTALION_ITEMS: (state, payload) => {
-            state.battalionItems = payload;
-        },
-        SET_SOUND_PLAY_STATE: (state, payload) => {
-            state.soundPlayState = payload;
+        SET_QUESTION_ITEMS: (state, payload) => {
+            state.questions = payload;
         }
     }, actions: {
-        stopSound: () => {
-
+        async prepareQuestionItems({state, commit}) {
+            if (state.questions.length > 0)
+                return
+            const [err, data] = await Vue.prototype.to(Vue.prototype.http.get(`/enduser/survey/initialize`));
+            if (!err) {
+                commit('SET_QUESTION_ITEMS', data.items);
+            }
         }
     },
 };

@@ -2,6 +2,7 @@ import route from './route';
 import {
     user,
     accessPermissions,
+    questions,
 } from './modules/index'
 
 export default {
@@ -104,5 +105,6 @@ export default {
     },
     accessPermissions,
     user,
+    questions,
 };
 

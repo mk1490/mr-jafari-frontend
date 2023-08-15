@@ -13,7 +13,7 @@ function preparseAuthorization(req) {
     req.headers.sessionId = store.getters.sessionId;
 }
 
-Vue.prototype.baseUrl = serverAddress + '/api/admin/';
+Vue.prototype.baseUrl = serverAddress + '/api/';
 axios.defaults.baseURL = Vue.prototype.baseUrl;
 axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
@@ -69,7 +69,7 @@ axios.interceptors.response.use(async (response) => {
                 await Router.push('/Login');
             }
             message = errorObject.message;
-            if (['SESSION_IS_EXPIRED','Unauthorized', 'MULTI_SESSION_NOT_ACCEPT'].includes(errorObject.error)) {
+            if (['SESSION_IS_EXPIRED', 'Unauthorized', 'MULTI_SESSION_NOT_ACCEPT'].includes(errorObject.error)) {
                 lastRequest.errorModal = false;
                 if (errorObject.error == 'MULTI_SESSION_NOT_ACCEPT') {
                     const submit = await Vue.swal.fire({
