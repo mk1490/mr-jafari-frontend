@@ -28,7 +28,9 @@
     "vue-sweetalert2": "5.0.2",
     "vue-toast-notification": "^0.6.3",
     "vuetify": "^2.6.14",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "zingchart": "^2.9.11-1",
+    "zingchart-vue": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
