@@ -1,84 +1,72 @@
 <template>
-    <v-container class="container--fluid pa-0" style="height: 100%;">
-        <div class="background"></div>
-        <div class="content fill-height">
-            <v-layout
-                    fill-height
-                    align-center justify-center>
-                <div class="d-inline-block">
-
-                    <div class="d-flex justify-center mt-8">
-                        <v-card
-                                dark
-                                class="elevation-3 py-10"
-                                :width="500">
-                            <v-card-title class="d-flex justify-center white--text text-center">
-                                <h2>
-                                    پنل مدیریتی سامانه هوشمند نظرسنجی
-                                </h2>
-                                <div class="justify-center text-center text-wrap mt-3">
-                                    <span>برای ورود به حساب کاربری، نام کاربری و کلمۀ عبور خود را وارد نمایید.</span>
-                                </div>
-                            </v-card-title>
-
-                            <v-card-text>
-                                <div class="d-flex justify-center">
-                                    <div class="col-10">
-                                        <div class="d-block">
-                                            <v-form
-                                                    dir="ltr"
-                                                    ref="form"
-                                                    lazy-validation>
-                                                <v-row>
-                                                    <v-col cols="12">
-                                                        <v-text-field
-                                                                clearable
-                                                                class="text-center"
-                                                                hide-details="auto"
-                                                                dense
-                                                                maxlength="50"
-                                                                outlined
-                                                                v-model="model.username"
-                                                                :label="$t('authentication.username')"
-                                                        />
-                                                    </v-col>
-                                                    <v-col cols="12">
-                                                        <v-text-field
-                                                                class="text-center"
-                                                                dense
-                                                                maxlength="50"
-                                                                outlined
-                                                                :type="passwordVisible? 'normal': 'password'"
-                                                                :append-icon="passwordVisible? 'mdi-eye-off': 'mdi-eye'"
-                                                                @click:append="passwordVisible =!passwordVisible"
-                                                                hide-details="auto"
-                                                                dir="ltr"
-                                                                v-model="model.password"
-                                                                :label="$t('authentication.password')"
-                                                        />
-                                                    </v-col>
-                                                </v-row>
-                                            </v-form>
-                                        </div>
-
-                                        <div class="d-block mt-6">
-                                            <v-btn
-                                                    @click="login"
-                                                    color="green"
-                                                    class="col-12 white--text"
-                                                    block>
-                                                {{ $t('authentication.login') }}
-                                            </v-btn>
-                                        </div>
+    <v-container fluid fill-height>
+        <v-layout align-center justify-center>
+            <v-flex align-self-center>
+                <div class="d-flex justify-center">
+                    <v-card
+                            class="justify-center"
+                            width="500">
+                        <v-card-title>
+                            <div class="d-flex justify-center text-center">
+                                <div class="d-inline-block">
+                                    <div>
+                                        <h2>
+                                            پنل مدیریتی سامانه هوشمند نظرسنجی
+                                        </h2>
+                                    </div>
+                                    <div class="justify-center text-center text-wrap mt-3">
+                                        <span>برای ورود به حساب کاربری، نام کاربری و کلمۀ عبور خود را وارد نمایید.</span>
                                     </div>
                                 </div>
-                            </v-card-text>
-                        </v-card>
-                    </div>
-
+                            </div>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-container class="container--fluid pa-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <v-text-field
+                                                clearable
+                                                class="text-center"
+                                                hide-details="auto"
+                                                dense
+                                                dir="ltr"
+                                                maxlength="50"
+                                                outlined
+                                                v-model="model.username"
+                                                :label="$t('authentication.username')"
+                                        />
+                                    </div>
+                                    <div class="col-12">
+                                        <v-text-field
+                                                class="text-center"
+                                                dense
+                                                maxlength="50"
+                                                outlined
+                                                :type="passwordVisible? 'normal': 'password'"
+                                                :append-icon="passwordVisible? 'mdi-eye-off': 'mdi-eye'"
+                                                @click:append="passwordVisible =!passwordVisible"
+                                                hide-details="auto"
+                                                dir="ltr"
+                                                v-model="model.password"
+                                                :label="$t('authentication.password')"
+                                        />
+                                    </div>
+                                </div>
+                            </v-container>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn
+                                    @click="login"
+                                    color="green"
+                                    class="col-12 white--text"
+                                    block>
+                                {{ $t('authentication.login') }}
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
                 </div>
-            </v-layout>
-        </div>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
@@ -105,7 +93,7 @@ export default {
             if (!err) {
                 sessionStorage.setItem('Authorization', data.access_token);
                 await this.$store.dispatch('setSessionId', data.sessionId)
-                await this.$router.push('/');
+                await this.$router.push('/Admin');
                 // await this.$store.dispatch('initProfile');
             } else {
                 await this.$store.dispatch('setSessionId', null)

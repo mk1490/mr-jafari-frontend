@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-auto">
                         <v-btn
-                                to="Main"
+                                to="/"
                                 text
                                 color="primary">
                             بازگشت به خانه

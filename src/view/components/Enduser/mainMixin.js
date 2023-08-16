@@ -13,6 +13,10 @@ export default {
                     icon: 'question',
                     text: 'جهت شرکت در نظرسنجی، لطفا کد ملّی خود را در فیلد ذیل وارد نمایید.',
                     input: 'tel',
+                    inputAttributes: {
+                        maxlength: 10,
+                        pattern: "[0-9]{10}"
+                    },
                     allowOutsideClick: closeableModal || true
                 }).then(async ({isConfirmed, value}) => {
                     if (isConfirmed) {
