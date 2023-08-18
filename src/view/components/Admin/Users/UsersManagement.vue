@@ -25,7 +25,7 @@
                         <div> {{ table.contents.indexOf(item) + 1 }}</div>
                     </template>
                     <template v-slot:item.nameAndFamily="{ item , index}">
-                        <div> {{ item.name + ' ' + item.family }}</div>
+                        <div> {{ item.name + ' ' + (!!item.family ? item.family : '') }}</div>
                     </template>
                     <template v-slot:item.createDate="{ item , index}">
                         <div> {{ getPersianTime(item.createDate, 'DD MMMM YYYY - HH:mm') }}</div>
@@ -120,7 +120,7 @@ export default {
     name: "UsersManagement",
     components: {ChangePassword, DefineOrEditUserModal},
     async created() {
-        const [err, data] = await this.to(this.http.get(`/user/list`));
+        const [err, data] = await this.to(this.http.get(`/admin/user/list`));
         if (!err) {
             this.table.contents = data;
         }
@@ -154,7 +154,7 @@ export default {
             this.modal.visible = false;
         },
         async itemEdit(item, index) {
-            const [err, data] = await this.to(this.http.get(`/user/${item.id}`));
+            const [err, data] = await this.to(this.http.get(`/admin/user/${item.id}`));
             if (!err) {
                 this.modal.index = index;
                 this.modal.data = data;
@@ -166,7 +166,7 @@ export default {
             const modal = await this.deleteModal.show();
             if (!modal)
                 return;
-            const [err] = await this.to(this.http.delete(`/user/${item.id}`,));
+            const [err] = await this.to(this.http.delete(`/admin/user/${item.id}`,));
             if (!err) {
                 this.table.contents.splice(this.table.contents.indexOf(item), 1);
             }

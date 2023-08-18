@@ -129,10 +129,10 @@ export default {
         }
     },
     methods: {
-        defineOrEditModal(item) {
+        defineOrEditModal(item, index) {
             this.modal.data = item;
             if (!!item) {
-                this.modal.lastIndex = this.table.contents.indexOf(item);
+                this.modal.lastIndex = index;
             }
             this.modal.visible = true;
         },
@@ -146,10 +146,10 @@ export default {
             this.table.contents.splice(this.modal.lastIndex, 1, data);
 
         },
-        async editItem(item) {
+        async editItem(item, index) {
             const [err, data] = await this.to(this.http.get(`/admin/likert-template/${item.id}`));
             if (!err) {
-                this.defineOrEditModal(data);
+                this.defineOrEditModal(data, index);
             }
         },
         async deleteItem(item, index) {

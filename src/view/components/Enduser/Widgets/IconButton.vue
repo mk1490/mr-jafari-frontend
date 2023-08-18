@@ -1,12 +1,18 @@
 <template>
     <v-btn
+            color="green"
             @click="$emit('click')"
             style="min-height:250px; min-width: 250px;max-width: 100px">
         <div class="d-inline-block">
             <div>
-                <v-icon size="125">{{ icon }}</v-icon>
+                <v-icon
+                        color="white"
+                        size="125">
+                    {{ icon }}
+                </v-icon>
             </div>
-            <div class="btn-text">
+            <div
+                    class="btn-text white--text">
                 <slot></slot>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import router from '@/router'
 
 const user = {
     state: {
@@ -47,7 +48,7 @@ const user = {
             state.deleteDialog.visible = visible;
         }, SUBMIT_DELETE: (state, index) => {
             state.submitDelete = index;
-        }, LOGOUT: () => {
+        }, LOGOUT: async () => {
 
         }, REMOVE_PHOTO: (state) => {
             state.avatar = '';
@@ -71,8 +72,11 @@ const user = {
         }, submitDelete: async ({commit}, index) => {
             await commit('SUBMIT_DELETE', index);
         }, logout: async ({commit}) => {
-            sessionStorage.setItem('Authorization', null);
-            await commit('LOGOUT');
+            sessionStorage.removeItem('Authorization')
+            window.location = '/#/Login';
+            // await router.push({
+            //     name: 'Login'
+            // })
         }, /*initProfile: async ({commit}) => {
             let isAuthenticated = localStorage.getItem('Authorization');
             isAuthenticated = !!isAuthenticated;

@@ -74,7 +74,9 @@
 export default {
     name: "Login",
     async created() {
+        console.log(await (this.$store.dispatch('isAuth')))
         if (await (this.$store.dispatch('isAuth'))) {
+
             await this.$router.push('/');
         }
     },

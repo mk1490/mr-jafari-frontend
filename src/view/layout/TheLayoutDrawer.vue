@@ -132,8 +132,8 @@ export default {
         async logout() {
             const [err, data] = await this.to(this.http.put(this.serverAddress + `/api/auth/logout`));
             if (!err) {
+                console.log("HANDLE LOGOUT")
                 await this.$store.dispatch('logout');
-                await this.$router.push('/login')
             }
         },
         checkHasPermission(item) {

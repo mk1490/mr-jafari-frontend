@@ -9,7 +9,7 @@
       <!--      </v-list-item-avatar>-->
       <v-list-item-content>
         <v-list-item-title>
-          {{ name + ' ' + family }}
+          {{ name + ' ' + (!!family ? family : '') }}
         </v-list-item-title>
         <v-list-item-subtitle class="mt-2">
           {{ username }}
