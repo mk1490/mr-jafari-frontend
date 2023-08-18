@@ -6,7 +6,7 @@
                     <div class="d-flex justify-center">
                         <div class="d-inline-block">
                             <div class="d-block">
-                                <h2>سامانه نظرسنجی بیمارستانی</h2>
+                                <h2>سامانه نظرسنجی آنلاین</h2>
                             </div>
                             <div class="d-block text-center">
                                 <div

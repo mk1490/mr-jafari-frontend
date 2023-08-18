@@ -58,7 +58,7 @@
 <script>
 export default {
     name: "DefineOrEditLikertTemplateModal",
-    emits: ['onAddItem'],
+    emits: ['onAddItem', 'onUpdateItem'],
     props: {
         visible: Boolean,
         data: Object,
@@ -90,6 +90,11 @@ export default {
                 const [err, data] = await this.to(this.http.post(`/admin/likert-template`, this.model));
                 if (!err) {
                     this.$emit('onAddItem', data);
+                }
+            } else {
+                const [err, data] = await this.to(this.http.post(`/admin/likert-template/${this.data.id}`, this.model));
+                if (!err) {
+                    this.$emit('onUpdateItem', data);
                 }
             }
         }

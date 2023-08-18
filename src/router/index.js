@@ -116,7 +116,7 @@ export const constantRoutes = [
 ];
 export default new Router({
     scrollBehavior: () => ({y: 0}), routes: constantRoutes,
-    mode: 'history',
+    mode: 'hash',
     // base: '/admin/'
 });
 export const asyncRoutes = [{path: '*', redirect: '/error/404', hidden: true},];

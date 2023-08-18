@@ -10,8 +10,7 @@
                         class="col-auto">
                     <v-btn
                             small
-
-                            @click="defineOrEditModal"
+                            @click="defineOrEditModal(null)"
                             color="primary">
                         {{ $t('likertTemplates.defineNewTemplate') }}
                     </v-btn>
@@ -54,7 +53,7 @@
                                     <v-btn
                                             v-bind="attrs"
                                             v-on="on"
-                                            @click="itemDelete(item)"
+                                            @click="deleteItem(item, index)"
                                             class="sqaure-btn white--text mx-1"
                                             color="red">
                                         <v-icon>
@@ -74,6 +73,7 @@
                 :visible.sync="modal.visible"
                 :data="modal.data"
                 @onAddItem="addItem"
+                @onUpdateItem="updateItem"
         >
 
         </define-or-edit-likert-template-modal>
@@ -100,6 +100,7 @@ export default {
             modal: {
                 visible: false,
                 data: false,
+                lastIndex: -1,
             },
             table: {
                 headers: [
@@ -130,18 +131,37 @@ export default {
     methods: {
         defineOrEditModal(item) {
             this.modal.data = item;
+            if (!!item) {
+                this.modal.lastIndex = this.table.contents.indexOf(item);
+            }
             this.modal.visible = true;
         },
         addItem(data) {
             this.modal.visible = false;
             this.table.contents.push(data);
         },
+        updateItem(data) {
+            this.modal.visible = false;
+            this.modal.data = data;
+            this.table.contents.splice(this.modal.lastIndex, 1, data);
+
+        },
         async editItem(item) {
             const [err, data] = await this.to(this.http.get(`/admin/likert-template/${item.id}`));
             if (!err) {
                 this.defineOrEditModal(data);
             }
+        },
+        async deleteItem(item, index) {
+            const modal = await this.deleteModal.show();
+            if (!modal)
+                return;
+            const [err, data] = await this.to(this.http.delete(`/admin/likert-template/${item.id}`));
+            if (!err) {
+                this.table.contents.splice(index, 1);
+            }
         }
+
     }
 }
 </script>
