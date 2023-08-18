@@ -32,17 +32,23 @@
                                         <v-divider/>
                                     </div>
                                     <div class="col-12 align-self-center">
-                                        <div class="d-inline-flex">
+                                        <div class="d-inline-flex answer-title">
                                             <span>{{ (index + 1) + '.' }}</span>
                                             <div class="mx-1"></div>
-                                            <span>
-                                        {{ item.title }}
-                                    </span>
+                                            <div>
+                                                <p>{{ item.title }}</p>
+                                                <strong
+                                                        v-if="item.answerState == 1"
+                                                        class="green--text">(پاسخ داده شده)</strong>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="d-flex justify-center">
                                             <v-radio-group
+                                                    :readonly="item.answerState == 1"
+                                                    :disabled="item.answerState == 1"
                                                     v-model="userSelectedLikerItem[index].value"
                                                     row>
                                                 <v-radio
@@ -85,7 +91,8 @@ export default {
         this.questions.map(f => {
             this.userSelectedLikerItem.push({
                 id: f.id,
-                value: 3
+                value: 3,
+                answerState: f.answerState
             })
         });
         this.itemsVisible = true;
@@ -105,9 +112,11 @@ export default {
             return {title, value}
         },
         async sendToServer() {
+            console.log(this.userSelectedLikerItem)
+
             const [err, data] = await this.to(this.http.post(`/enduser/survey`, {
                 nationalCode: this.$store.getters.userNationalCode,
-                participantItems: this.userSelectedLikerItem.map(f => {
+                participantItems: this.userSelectedLikerItem.filter(x => x.answerState == 0).map(f => {
                     return {
                         questionId: f.id,
                         value: f.value
@@ -139,8 +148,12 @@ export default {
 </script>
 
 <style scoped>
-span {
+.answer-title {
     font-family: Iransans;
     font-size: 24px;
+}
+
+.answer-title strong {
+    font-size: 20px;
 }
 </style>

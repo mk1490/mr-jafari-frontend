@@ -92,7 +92,7 @@ export default {
                     this.$emit('onAddItem', data);
                 }
             } else {
-                const [err, data] = await this.to(this.http.post(`/admin/likert-template/${this.data.id}`, this.model));
+                const [err, data] = await this.to(this.http.put(`/admin/likert-template/${this.data.id}`, this.model));
                 if (!err) {
                     this.$emit('onUpdateItem', data);
                 }
