@@ -21,7 +21,8 @@ const baseData = {
         }, {
             text: i18n.t('discount.form.discountTypeItems.amountage'), value: 1
         },]
-    }, getters: {
+    },
+    getters: {
         timeRangeItems: (state) => state.timeRangeItems,
         questions: (state) => state.questions,
         userNationalCode: (state) => state.userNationalCode,
@@ -34,8 +35,9 @@ const baseData = {
         SET_NATIONAL_CODE: (state, payload) => {
             state.userNationalCode = payload;
         }
-    }, actions: {
-        async prepareQuestionItems({state, commit}) {
+    },
+    actions: {
+        async prepareQuestionItems({state, commit}, payload) {
             const nationalCode = store.getters.userNationalCode;
             if (!nationalCode)
                 return;

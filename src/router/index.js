@@ -10,7 +10,8 @@ export const constantRoutes = [
         path: '*', hidden: true, redirect: '',
     },
     {
-        path: '/Admin', name: 'AdminRoot',
+        path: '/Admin',
+        name: 'AdminRoot',
         component: AdminLayout,
         meta: {
             noCache: true, affix: true,
@@ -103,6 +104,12 @@ export const constantRoutes = [
                 path: '/SurveyComplete',
                 name: 'SurveyComplete',
                 component: () => import('@/view/components/Enduser/SurveyComplete.vue'),
+                meta: {},
+            },
+            {
+                path: '/qwerty',
+                name: 'qwerty',
+                component: () => import('@/view/components/Enduser/Test.vue'),
                 meta: {},
             },
         ]

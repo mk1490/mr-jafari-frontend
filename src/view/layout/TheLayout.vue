@@ -5,12 +5,6 @@
         <the-layout-content/>
         <the-layout-fab/>
         <the-layout-to-top-fab/>
-        <audio
-                style="visibility: hidden"
-                controls
-                autoplay
-                muted
-                id="audio"/>
     </div>
 </template>
 

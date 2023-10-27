@@ -1,7 +1,8 @@
 ﻿import Vue from 'vue';
 import axios from "axios";
 import i18n from '@/locale'; // Internationalization
-import store from '@/store'; // Internationalization
+import store from '@/store'; // Vuex
+
 import Router from "@/router";
 
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
